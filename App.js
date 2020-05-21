@@ -1,10 +1,13 @@
 import React from 'react';
 import {
     SafeAreaView,
-    StyleSheet, View,
+    StyleSheet,
+    View,
 } from 'react-native';
-import Header from 'components/Header';
-import TodoItem from "components/TodoItem";
+import {
+    Header,
+    TodoItem
+} from 'components';
 
 export default function App() {
     return (
