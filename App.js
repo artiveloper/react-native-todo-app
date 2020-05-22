@@ -2,7 +2,7 @@ import React from 'react';
 import {
     SafeAreaView,
     StyleSheet,
-    View,
+    FlatList,
 } from 'react-native';
 import {
     Header,
@@ -10,15 +10,48 @@ import {
     TaskModal,
 } from 'components';
 
-export default function App() {
-    return (
-        <SafeAreaView style={styles.container}>
-            <Header/>
-            <TodoItem title="클래스101 커리큘럼 만들기" done={true}/>
-            <TodoItem title="운전면허 도로주행 연수" done={false}/>
-            <TaskModal isVisible={false}/>
-        </SafeAreaView>
-    );
+export default class App extends React.Component {
+
+    state = {
+        todos: [
+            {
+                title: '클래스101 커리큘럼 만들기',
+                done: true,
+            },
+            {
+                title: '운전면허 도로주행 연수',
+                done: false,
+            },
+            {
+                title: '클래스101 리액트네이티브 강의 듣기',
+                done: false,
+            }
+        ],
+    }
+
+    render() {
+        return (
+            <SafeAreaView style={styles.container}>
+                <Header/>
+                <FlatList
+                    data={this.state.todos}
+                    renderItem={({item}) => {
+                        return (
+                            <TodoItem
+                                title={item.title}
+                                done={item.done}
+                            />
+                        )
+                    }}
+                    keyExtractor={(_, index) => {
+                        return `${index}`
+                    }}
+                />
+                <TaskModal isVisible={false}/>
+            </SafeAreaView>
+        );
+    }
+
 }
 
 const styles = StyleSheet.create({
