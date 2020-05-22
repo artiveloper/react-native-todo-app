@@ -38,6 +38,18 @@ export default class App extends React.Component {
         this.setState({showModal: false})
     }
 
+    addTodo = (title) => {
+        console.log('clkick,.,..', title)
+
+        this.setState({
+            todos: this.state.todos.concat({
+                title: title,
+                done: false,
+            }),
+            showModal: false
+        })
+    }
+
     render() {
         return (
             <SafeAreaView style={styles.container}>
@@ -61,6 +73,7 @@ export default class App extends React.Component {
                 <TaskModal
                     isVisible={this.state.showModal}
                     hideModal={this.hideModal}
+                    addTodo={this.addTodo}
                 />
             </SafeAreaView>
         );
