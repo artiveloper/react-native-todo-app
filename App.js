@@ -6,7 +6,8 @@ import {
 } from 'react-native';
 import {
     Header,
-    TodoItem
+    TodoItem,
+    TaskModal,
 } from 'components';
 
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
             <Header/>
             <TodoItem title="클래스101 커리큘럼 만들기" done={true}/>
             <TodoItem title="운전면허 도로주행 연수" done={false}/>
+            <TaskModal isVisible={false}/>
         </SafeAreaView>
     );
 }
