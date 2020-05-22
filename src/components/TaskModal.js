@@ -6,12 +6,13 @@ import {
 } from 'react-native';
 import Modal from 'react-native-modal';
 
-const TaskModal = ({isVisible}) => {
+const TaskModal = ({isVisible, hideModal}) => {
     return (
         <Modal
             style={styles.modal}
             isVisible={isVisible}
             avoidKeyboard
+            onBackdropPress={hideModal}
         >
             <View style={styles.container}>
                 <TextInput

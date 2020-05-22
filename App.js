@@ -27,12 +27,23 @@ export default class App extends React.Component {
                 done: false,
             }
         ],
+        showModal: false,
+    }
+
+    showModal = () => {
+        this.setState({showModal: true})
+    }
+
+    hideModal = () => {
+        this.setState({showModal: false})
     }
 
     render() {
         return (
             <SafeAreaView style={styles.container}>
-                <Header/>
+                <Header
+                    showModal={this.showModal}
+                />
                 <FlatList
                     data={this.state.todos}
                     renderItem={({item}) => {
@@ -47,7 +58,10 @@ export default class App extends React.Component {
                         return `${index}`
                     }}
                 />
-                <TaskModal isVisible={false}/>
+                <TaskModal
+                    isVisible={this.state.showModal}
+                    hideModal={this.hideModal}
+                />
             </SafeAreaView>
         );
     }
