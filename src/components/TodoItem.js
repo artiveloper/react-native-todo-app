@@ -9,9 +9,7 @@ import {
     FontAwesome
 } from '@expo/vector-icons';
 import Swipeable from "react-native-gesture-handler/Swipeable";
-import {
-    DeleteButton
-} from 'components';
+import DeleteButton from "./DeleteButton";
 
 const TodoItem = ({title, done, remove, toggle}) => {
 
