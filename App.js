@@ -3,6 +3,7 @@ import {
     SafeAreaView,
     StyleSheet,
     FlatList,
+    AsyncStorage,
 } from 'react-native';
 import {
     Header,
@@ -30,6 +31,13 @@ export default class App extends React.Component {
         showModal: false,
     }
 
+    componentDidMount() {
+        AsyncStorage.getItem('@todos:state')
+            .then((state) => {
+                this.setState(JSON.parse(state))
+            })
+    }
+
     showModal = () => {
         this.setState({showModal: true})
     }
@@ -46,18 +54,25 @@ export default class App extends React.Component {
             }),
             showModal: false
         })
+        this.save()
     }
 
     removeTodo = (index) => {
         this.setState({
             todos: this.state.todos.filter((_, i) => i !== index)
         })
+        this.save()
     }
 
     toggle = (index) => {
         const newTodos = [...this.state.todos]
         newTodos[index].done = !newTodos[index].done
         this.setState({todos: newTodos})
+        this.save()
+    }
+
+    save = () => {
+        AsyncStorage.setItem('@todos:state', JSON.stringify(this.state));
     }
 
     render() {
