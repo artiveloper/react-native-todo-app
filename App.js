@@ -54,6 +54,12 @@ export default class App extends React.Component {
         })
     }
 
+    toggle = (index) => {
+        const newTodos = [...this.state.todos]
+        newTodos[index].done = !newTodos[index].done
+        this.setState({todos: newTodos})
+    }
+
     render() {
         return (
             <SafeAreaView style={styles.container}>
@@ -68,6 +74,7 @@ export default class App extends React.Component {
                                 title={item.title}
                                 done={item.done}
                                 remove={() => this.removeTodo(index)}
+                                toggle={() => this.toggle(index)}
                             />
                         )
                     }}

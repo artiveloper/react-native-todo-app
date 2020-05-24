@@ -13,7 +13,7 @@ import {
     DeleteButton
 } from 'components';
 
-const TodoItem = ({title, done, remove}) => {
+const TodoItem = ({title, done, remove, toggle}) => {
 
     return (
         <Swipeable
@@ -24,6 +24,7 @@ const TodoItem = ({title, done, remove}) => {
                     <TouchableOpacity
                         style={done ? styles.done : styles.check}
                         activeOpacity={0.8}
+                        onPress={toggle}
                     >
                         <FontAwesome name="check" color={done ? '#FFFFFF' : '#E0E0E0'} size={14}/>
                     </TouchableOpacity>
